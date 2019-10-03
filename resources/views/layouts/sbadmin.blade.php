@@ -36,7 +36,8 @@
               🎮
           </span>
         </div>
-        <div class="sidebar-brand-text mx-3"> Argos <sup>2</sup>
+        <div class="sidebar-brand-text mx-3">
+          TheWolfStore
         </div>
       </a>
 

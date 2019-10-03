@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('captura', 'ProductoController@index')->name('captura');
+Route::get('captura', 'ProductoController@create')->name('captura');
 Route::post('guardar', 'ProductoController@store')->name('guardar');
 
-Route::get('ver-productos', 'ProductoController@show')->name('ver-productos');
+Route::get('ver-productos', 'ProductoController@index')->name('ver-productos');

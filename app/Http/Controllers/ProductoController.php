@@ -15,7 +15,8 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        return view('agrega-producto');
+        $productos = Producto::get();
+        return view('ver-productos', compact('productos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('agrega-producto');
     }
 
     /**
@@ -48,8 +49,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        $productos = Producto::get();
-        return view('ver-productos', compact('productos'));
+        
     }
 
     /**
