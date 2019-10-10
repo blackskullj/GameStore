@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('captura', 'ProductoController@create')->name('captura');
-Route::post('guardar', 'ProductoController@store')->name('guardar');
+Route::resource('producto', 'ProductoController');
 
-Route::get('ver-productos', 'ProductoController@index')->name('ver-productos');
+// Route::get('/', 'HomeController@index')->name('home');
+
+// Route::get('captura', 'ProductoController@create')->name('captura');
+// Route::post('guardar', 'ProductoController@store')->name('guardar');
+
+// Route::get('ver-productos', 'ProductoController@index')->name('ver-productos');

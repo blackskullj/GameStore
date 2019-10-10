@@ -37,8 +37,12 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'codigo' => 'required|max:10'
+        ]);
         Producto::create($request->all());
-        return redirect()->route('ver-productos');
+        return redirect()->route('producto.index');
     }
 
     /**
@@ -49,7 +53,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        
+        return view('productoShow', compact('producto'));
     }
 
     /**
@@ -60,7 +64,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        return view('agrega-producto', compact('producto'));
     }
 
     /**
@@ -72,7 +76,14 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $producto->nombre = $request->nombre;
+        $producto->codigo = $request->codigo;
+        $producto->descripcion = $request->descripcion;
+        $producto->precio = $request->precio;
+        $producto->existencia = $reuquest->existencia;
+        $producto->save();
+
+        return redirect()->route('producto.show', $producto->id);
     }
 
     /**
@@ -83,6 +94,7 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $producto)
     {
-        //
+        $producto->delete();
+        return redirect()->route('programa.index');
     }
 }
