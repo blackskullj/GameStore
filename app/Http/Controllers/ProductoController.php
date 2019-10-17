@@ -76,6 +76,10 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
+        $request->validate([
+            'nombre' => 'required|min:5|max:255',
+            'codigo' => 'required|max:10'
+        ]);
         $producto->nombre = $request->nombre;
         $producto->codigo = $request->codigo;
         $producto->descripcion = $request->descripcion;
