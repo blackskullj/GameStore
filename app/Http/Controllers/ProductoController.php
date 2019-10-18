@@ -16,7 +16,7 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = Producto::get();
-        return view('ver-productos', compact('productos'));
+        return view('productos.ver-productos', compact('productos'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('agrega-producto');
+        return view('productos.agrega-producto');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        return view('productoShow', compact('producto'));
+        return view('productos.productoShow', compact('producto'));
     }
 
     /**
@@ -64,7 +64,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        return view('agrega-producto', compact('producto'));
+        return view('productos.agrega-producto', compact('producto'));
     }
 
     /**
@@ -84,7 +84,7 @@ class ProductoController extends Controller
         $producto->codigo = $request->codigo;
         $producto->descripcion = $request->descripcion;
         $producto->precio = $request->precio;
-        $producto->existencia = $reuquest->existencia;
+        $producto->existencia = $request->existencia;
         $producto->save();
 
         return redirect()->route('producto.show', $producto->id);
@@ -99,6 +99,6 @@ class ProductoController extends Controller
     public function destroy(Producto $producto)
     {
         $producto->delete();
-        return redirect()->route('programa.index');
+        return redirect()->route('producto.index');
     }
 }
