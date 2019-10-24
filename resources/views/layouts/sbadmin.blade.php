@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Listado de Productos</title>
+  <title>@yield('title')</title>
 
   <!-- Custom fonts for this template-->
   <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -117,7 +117,7 @@
             <a class="collapse-item" href="register.html">Register</a>
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
+            <h6 class="collapse-header">Gestion de Productos:</h6>
             <a class="collapse-item" href="{{ action('ProductoController@create') }}">Capturar Producto</a>
             <a class="collapse-item active" href="{{ action('ProductoController@index') }}">Mostrar Productos</a>
           </div>

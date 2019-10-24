@@ -1,7 +1,7 @@
 @extends('layouts.sbadmin')
 
 @section('title')
-<title>Captura de productos</title>
+Captura de productos
 @endsection
 
 @section('content')

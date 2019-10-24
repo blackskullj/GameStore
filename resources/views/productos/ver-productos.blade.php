@@ -1,5 +1,9 @@
 @extends('layouts.sbadmin')
 
+@section('title')
+Muestra de productos
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -17,13 +21,14 @@
                             </tr>
                         </thead>
                         @foreach ($productos as $producto)
-                            <tr>
-                                <td>{{ $producto->codigo }}</td>
-                                <td>{{ $producto->nombre }}</td>
-                                <td>
-                                    <a href="{{ route('producto.show', $producto->id) }}" class="btn btn-sm btn-info">Ver Detalle</a>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $producto->codigo }}</td>
+                            <td>{{ $producto->nombre }}</td>
+                            <td>
+                                <a href="{{ route('producto.show', $producto->id) }}" class="btn btn-sm btn-info">Ver
+                                    Detalle</a>
+                            </td>
+                        </tr>
                         @endforeach
                     </table>
                 </div>
