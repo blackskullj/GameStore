@@ -14,7 +14,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        //
+        $clientes = Cliente::all();
+        return view('clientes.clientesIndex', compact('clientes'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('clientes.clientesForm');
     }
 
     /**
@@ -35,7 +36,13 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'correoElectronico' => 'required|email|unique:clientes, correoElectronico'
+        ]);
+
+        Cliente::create($request->all());
+        return redirect()->route('cliente.index');
     }
 
     /**
@@ -46,7 +53,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        //
+        return view('clientes.clientesShow', compact('cliente'));
     }
 
     /**
@@ -57,7 +64,7 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('clientes.clientesForm', compact('cliente'));
     }
 
     /**
@@ -69,7 +76,21 @@ class ClienteController extends Controller
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|max:255',
+            'correoElectronico' => 'required|email|unique:clientes, correoElectronico'
+        ]);
+
+        $cliente->nombre = $request->nombre;
+        $cliente->domicilioCalle = $request->domicilioCalle;
+        $cliente->domicilioCalle = $request->domicilioCalle;
+        $cliente->domicilioNumero = $request->domicilioNumero;
+        $cliente->correoElectronico = $request->correoElectronico;
+        $cliente->telefono = $request-telefono;
+
+        $cliente->save();
+
+        return redirect()->route('cliente.show', $cliente->id );
     }
 
     /**
@@ -80,6 +101,7 @@ class ClienteController extends Controller
      */
     public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        return redirect()->route('cliente.index');
     }
 }
