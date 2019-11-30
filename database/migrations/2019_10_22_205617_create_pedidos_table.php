@@ -15,7 +15,30 @@ class CreatePedidosTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('cliente_id');
+            $table->date('fechaPedido');
             $table->timestamps();
+
+            $table->foreign('cliente_id')
+                ->references('id')
+                ->on('clientes')
+                ->onDelete('cascade');
+        });
+
+        Schema::create('pedido_producto', function (Blueprint $table) {
+            $table->unsignedBigInteger('pedido_id');
+            $table->unsignedBigInteger('producto_id');
+
+            $table->foreign('pedido_id')
+                ->references('id')
+                ->on('pedidos')
+                ->onDelete('cascade');
+            
+            $table->foreign('producto_id')
+                ->references('id')
+                ->on('productos')
+                ->onDelete('cascade');
+            
         });
     }
 
@@ -27,5 +50,6 @@ class CreatePedidosTable extends Migration
     public function down()
     {
         Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('pedido-producto');
     }
 }
